@@ -152,8 +152,9 @@ public class Menu {
                 int userChoice = scanner.nextInt();
 
                 order.addItem(allDrinks[userChoice - 1]);
+                System.out.println("Added drink! Don't forget to pick up your choice at the store!");
                 break;
-            } catch (Exception e) {
+            } catch (NumberFormatException e) {
                 System.out.println("Enter a valid number!");
             }
         }

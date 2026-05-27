@@ -2,6 +2,7 @@ package com.pluralsight.models;
 
 import com.pluralsight.ui.Menu;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
@@ -11,6 +12,7 @@ public class Order {
     private String address;
 
     public Order() {
+        this.items = new ArrayList<>();
     }
 
     public void setDeliveryMethod(String deliveryMethod) {

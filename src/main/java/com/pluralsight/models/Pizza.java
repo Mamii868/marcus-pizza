@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Pizza implements MenuItem {
     private Crust crust;
     private Size size;
-    private ArrayList<Topping> toppings;
+    private final ArrayList<Topping> toppings;
     private double price;
 
     public Pizza() {
