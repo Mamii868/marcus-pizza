@@ -1,0 +1,42 @@
+package com.pluralsight.ui;
+
+import com.pluralsight.models.Order;
+import com.pluralsight.models.Pizza;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class CheckOut {
+
+    private CheckOut() {
+    }
+
+    public static void checkoutMenu(Order order) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Your order:");
+
+//        FOREACH IS ACTUALLY A THING THIS IS GOING TO BE SO MUCH EASIER
+        order.getPizzas().forEach(pizza -> {
+            System.out.println(pizza.getSize().getName() + " " + pizza.getCrust().getName() + "Pizza");
+            pizza.getToppings().forEach(topping -> System.out.println("- " + topping.getName()));
+            System.out.println("Price: $" + String.format("%.2f", pizza.getPrice()));
+        });
+
+        order.getItems().forEach(item -> {
+            if (!(item instanceof Pizza)) {
+                System.out.println(item.getName() + ": $" + String.format("%.2f", item.getPrice()));
+            }
+        });
+
+        System.out.println();
+        System.out.print("Check Out? (Y/N)");
+        String userChoice = scanner.nextLine();
+
+        if (userChoice.equalsIgnoreCase("y")) {
+            System.out.println("Checked out! We will let you know when your order is " + (order.getDeliveryMethod().equalsIgnoreCase("delivery") ? "on its way" : "ready to pick up!"));
+            System.exit(1);
+        }
+
+    }
+}
