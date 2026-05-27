@@ -16,6 +16,11 @@ public enum Toppings {
     }
 
 
-    public String getDisplayName() { return name; }
-    public double getPrice() { return price; }
+    public String getDisplayName() {
+        return name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
 }
