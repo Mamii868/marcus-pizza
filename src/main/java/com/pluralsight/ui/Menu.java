@@ -33,6 +33,7 @@ public class Menu {
                         System.out.println("Goodbye!");
                         System.exit(0);
                     }
+                    default -> System.out.println("Enter a valid option!");
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Please enter a valid number!");
@@ -41,11 +42,9 @@ public class Menu {
 
     }
 
-    public static void orderMenu() {
+    public static void deliveryTypeMenu() {
         Order order = new Order();
-        boolean menuRunning = true;
-
-        while (menuRunning) {
+        while (true) {
             try {
                 System.out.println("""
                         1. Pick up
@@ -56,23 +55,65 @@ public class Menu {
                 scanner.nextLine();
 
                 switch (userChoice) {
-                    case 1 -> order.setDeliveryMethod("Pick Up");
+                    case 1 -> {
+                        order.setDeliveryMethod("Pick Up");
+                        orderMenu(order);
+                    }
                     case 2 -> {
                         order.setDeliveryMethod("Delivery");
-//                        TODO: Add menu for customer info
+                        userInfoMenu(order);
+                        orderMenu(order);
                     }
                     case 3 -> {
                         System.out.println("Goodbye!");
                         System.exit(0);
                     }
+                    default -> System.out.println("Enter a valid option!");
                 }
 
             } catch (NumberFormatException e) {
-                System.out.println("Enter a valid numer!");
+                System.out.println("Enter a valid number!");
             }
-
         }
 
+    }
+
+    public static void userInfoMenu(Order order) {
+        System.out.print("Enter your full address: ");
+        String userAddress = scanner.nextLine();
+        order.setAddress(userAddress);
+    }
+
+    public static void orderMenu(Order order) {
+        boolean menuRunning = true;
+
+        while (menuRunning) {
+            try {
+                System.out.println("""
+                        Choose a menu item:
+                        
+                        1. Add Pizza
+                        2. Add Drink
+                        3. Add Side
+                        4. Check Out
+                        5. Back to Main Menu (Will Reset Order)
+                        """);
+
+                int userChoice = scanner.nextInt();
+                scanner.nextLine();
+
+                switch (userChoice) {
+                    case 1 -> System.out.println("Pizza Menu");
+                    case 2 -> System.out.println("Drink Menu");
+                    case 3 -> System.out.println("Side Menu");
+                    case 4 -> System.out.println("Check Out");
+                    case 5 -> menuRunning = false;
+                    default -> System.out.println("Enter a valid option!");
+                }
+            } catch (Exception e) {
+                System.out.println("Enter a valid number!");
+            }
+        }
     }
 
 }
