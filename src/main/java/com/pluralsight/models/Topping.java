@@ -1,6 +1,6 @@
 package com.pluralsight.models;
 
-public enum Toppings {
+public enum Topping {
     //    All the meats
     PEPPERONI("Pepperoni", 1.50),
     SAUSAGE("Sausage", 1.75),
@@ -24,7 +24,7 @@ public enum Toppings {
     private final String name;
     private final double price;
 
-    Toppings(String name, double price) {
+    Topping(String name, double price) {
         this.name = name;
         this.price = price;
     }
