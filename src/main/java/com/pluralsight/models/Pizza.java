@@ -7,6 +7,7 @@ public class Pizza implements MenuItem {
     private Size size;
     private final ArrayList<Topping> toppings;
     private double price;
+    private String name;
 
     public Pizza() {
         this.price = 6.00;
@@ -23,6 +24,22 @@ public class Pizza implements MenuItem {
 
     public void setSize(Size size) {
         this.size = size;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public Crust getCrust() {
+        return this.crust;
+    }
+
+    public Size getSize() {
+        return this.size;
+    }
+
+    public ArrayList<Topping> getToppings() {
+        return this.toppings;
     }
 
     public double getPrice() {
