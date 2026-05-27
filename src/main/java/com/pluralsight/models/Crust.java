@@ -7,15 +7,15 @@ public enum Crust {
     DEEP_DISH("Deep Dish", 4.00),
     STUFFED("Stuffed Crust", 6);
 
-    private String name;
-    private double price;
+    private final String name;
+    private final double price;
 
     Crust(String name, double price) {
         this.name = name;
         this.price = price;
     }
 
-    public String getDisplayName() {
+    public String getName() {
         return name;
     }
 

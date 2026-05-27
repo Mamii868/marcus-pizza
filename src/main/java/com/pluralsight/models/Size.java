@@ -14,7 +14,7 @@ public enum Size {
         this.price = price;
     }
 
-    public String getDisplayName() {
+    public String getName() {
         return name;
     }
 

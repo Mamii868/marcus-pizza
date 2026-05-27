@@ -30,7 +30,7 @@ public enum Topping {
     }
 
 
-    public String getDisplayName() {
+    public String getName() {
         return name;
     }
 

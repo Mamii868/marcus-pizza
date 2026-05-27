@@ -1,6 +1,6 @@
 package com.pluralsight.models;
 
-public enum Side {
+public enum Side implements MenuItem {
     GARLIC_BREAD("Garlic Bread", 4.50),
     CHEESE_BREAD("Cheese Bread", 6.99),
     BUFFALO_WINGS("Buffalo Wings", 8.99),
@@ -15,7 +15,7 @@ public enum Side {
         this.price = price;
     }
 
-    public String getDisplayName() {
+    public String getName() {
         return name;
     }
 

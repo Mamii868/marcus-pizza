@@ -13,7 +13,7 @@ public enum Drink {
     }
 
 
-    public String getDisplayName() {
+    public String getName() {
         return name;
     }
 
