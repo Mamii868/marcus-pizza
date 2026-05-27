@@ -1,6 +1,6 @@
 package com.pluralsight.models;
 
-public enum Drink {
+public enum Drink implements MenuItem {
     ONE_LITER("One Liter", 2.99),
     TWO_LITER("Two Liter", 3.99);
 
