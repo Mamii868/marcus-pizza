@@ -1,19 +1,17 @@
 package com.pluralsight.models;
 
-public enum Side {
-    GARLIC_BREAD("Garlic Bread", 4.50),
-    CHEESE_BREAD("Cheese Bread", 6.99),
-    BUFFALO_WINGS("Buffalo Wings", 8.99),
-    RANCH_CUP("Ranch Cup", 0.50);
+public enum Drink {
+    ONE_LITER("One Liter", 2.99),
+    TWO_LITER("Two Liter", 3.99);
 
     private final String name;
     private final double price;
 
-
-    Side(String name, double price) {
+    Drink(String name, double price) {
         this.name = name;
         this.price = price;
     }
+
 
     public String getDisplayName() {
         return name;
