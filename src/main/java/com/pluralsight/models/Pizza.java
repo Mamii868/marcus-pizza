@@ -10,6 +10,7 @@ public class Pizza implements MenuItem {
 
     public Pizza() {
         this.price = 6.00;
+        this.toppings = new ArrayList<>();
     }
 
     public void setCrust(Crust crust) {
