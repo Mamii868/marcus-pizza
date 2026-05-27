@@ -274,7 +274,6 @@ public class Menu {
                 pizza.addTopping(allToppings[userChoice - 1]);
                 System.out.println("Added " + allToppings[userChoice - 1].getName());
             } catch (NumberFormatException e) {
-                e.printStackTrace();
                 System.out.println("Enter a valid number!");
             }
         }
