@@ -1,9 +1,8 @@
 package com.pluralsight.models;
 
-import com.pluralsight.ui.Menu;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Order {
     private String deliveryMethod;
@@ -37,5 +36,9 @@ public class Order {
 
     public double getOrderTotal() {
         return orderTotal;
+    }
+
+    public List<Pizza> getPizzas() {
+        return this.items.stream().filter(item -> item instanceof Pizza).map(item -> (Pizza) item).collect(Collectors.toList());
     }
 }
