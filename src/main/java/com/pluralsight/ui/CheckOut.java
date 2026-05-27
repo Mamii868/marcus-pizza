@@ -18,9 +18,9 @@ public class CheckOut {
 
 //        FOREACH IS ACTUALLY A THING THIS IS GOING TO BE SO MUCH EASIER
         order.getPizzas().forEach(pizza -> {
-            System.out.println(pizza.getSize().getName() + " " + pizza.getCrust().getName() + "Pizza");
-            pizza.getToppings().forEach(topping -> System.out.println("- " + topping.getName()));
-            System.out.println("Price: $" + String.format("%.2f", pizza.getPrice()));
+            System.out.println(pizza.getSize().getName() + " " + pizza.getCrust().getName() + " Pizza: " + String.format("$%.2f", pizza.getPrice()));
+            pizza.getToppings().forEach(topping -> System.out.println("     - " + topping.getName()));
+            System.out.println();
         });
 
         order.getItems().forEach(item -> {

@@ -24,7 +24,6 @@ public class Menu {
                         """);
 
                 System.out.print("Choose an option: ");
-
                 int userChoice = scanner.nextInt();
                 scanner.nextLine();
 
@@ -52,6 +51,8 @@ public class Menu {
                         2. Delivery
                         3. Exit
                         """);
+
+                System.out.print("Choose how you want to receive your food: ");
                 int userChoice = scanner.nextInt();
                 scanner.nextLine();
 
@@ -91,7 +92,7 @@ public class Menu {
         while (menuRunning) {
             try {
                 System.out.println("""
-                        Choose a menu item:
+                        = Menu =
                         
                         1. Add Pizza
                         2. Add Drink
@@ -100,6 +101,7 @@ public class Menu {
                         5. Back to Main Menu (Will Reset Order)
                         """);
 
+                System.out.print("Choose a menu item: ");
                 int userChoice = scanner.nextInt();
                 scanner.nextLine();
 
@@ -107,7 +109,7 @@ public class Menu {
                     case 1 -> pizzaMenu(order);
                     case 2 -> drinkMenu(order);
                     case 3 -> sideMenu(order);
-                    case 4 -> System.out.println("Check Out");
+                    case 4 -> CheckOut.checkoutMenu(order);
                     case 5 -> menuRunning = false;
                     default -> System.out.println("Enter a valid option!");
                 }
@@ -264,10 +266,10 @@ public class Menu {
                 }
 
                 System.out.println();
-                System.out.print("Choose a topping (99 to continue): ");
+                System.out.print("Choose a topping (0 to continue): ");
                 int userChoice = scanner.nextInt();
 
-                if (userChoice == 99) {
+                if (userChoice == 0) {
                     break;
                 }
 
