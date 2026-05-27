@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 public class Pizza implements MenuItem {
     private Crust crust;
-    private int size;
+    private Size size;
     private ArrayList<Topping> toppings;
     private double price;
 
     public Pizza() {
-        this.price = 8.00;
+        this.price = 6.00;
     }
 
     public void setCrust(Crust crust) {
@@ -20,15 +20,22 @@ public class Pizza implements MenuItem {
         this.toppings.add(topping);
     }
 
-    public double getPrice() {
-        double total = 0;
+    public void setSize(Size size) {
+        this.size = size;
+    }
 
-        total += crust.getPrice();
+    public double getPrice() {
+
+//        Resets price so prices aren't incorrectly added
+        this.price = 6.00;
+
+        this.price += size.getPrice();
+        this.price += crust.getPrice();
 //        Loop through toppings to get all the prices
         for (Topping topping : toppings) {
-            total += topping.getPrice();
+            this.price += topping.getPrice();
         }
 
-        return total;
+        return this.price;
     }
 }
