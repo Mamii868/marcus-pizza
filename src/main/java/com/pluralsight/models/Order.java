@@ -1,5 +1,7 @@
 package com.pluralsight.models;
 
+import com.pluralsight.ui.Menu;
+
 import java.util.List;
 
 public class Order {
@@ -17,6 +19,10 @@ public class Order {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public void addItem(MenuItem item) {
+        this.items.add(item);
     }
 
     public String getDeliveryMethod() {
