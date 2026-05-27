@@ -184,6 +184,7 @@ public class Menu {
                     case 3 -> menuRunning = false;
                     default -> System.out.println("Enter a valid option!");
                 }
+                order.addItem(pizza);
                 menuRunning = false;
             } catch (Exception e) {
                 System.out.println("Enter a valid number!");
