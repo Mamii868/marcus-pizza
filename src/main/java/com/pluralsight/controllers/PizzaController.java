@@ -1,16 +1,15 @@
 package com.pluralsight.controllers;
 
-import com.pluralsight.models.Crust;
-import com.pluralsight.models.Pizza;
-import com.pluralsight.models.Size;
-import com.pluralsight.models.Topping;
+import com.pluralsight.models.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 //All endpoints return the pizza as confirmation
+@RestController
 public class PizzaController {
     private Pizza pizza;
 
