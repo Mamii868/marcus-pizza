@@ -3,10 +3,14 @@ package com.pluralsight.controllers;
 import com.pluralsight.models.Crust;
 import com.pluralsight.models.Pizza;
 import com.pluralsight.models.Size;
+import com.pluralsight.models.Topping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.List;
+
+//All endpoints return the pizza as confirmation
 public class PizzaController {
     private Pizza pizza;
 
@@ -31,5 +35,12 @@ public class PizzaController {
         return this.pizza;
     }
 
+    //    Send one api request for all the toppings then loop through and add them all
+//    I believe this is the better option rather than calling this 100000x in the client
+    @PostMapping("/pizza/toppings")
+    Pizza addTopping(@RequestBody List<Topping> toppings) {
+        toppings.forEach(topping -> this.pizza.addTopping(topping));
 
+        return this.pizza;
+    }
 }
