@@ -35,6 +35,10 @@ public class Order {
     }
 
     public double getOrderTotal() {
+        this.orderTotal = 0;
+
+        items.forEach(item -> this.orderTotal += item.getPrice());
+
         return orderTotal;
     }
 
