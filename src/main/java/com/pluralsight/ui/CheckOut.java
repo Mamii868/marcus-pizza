@@ -30,7 +30,7 @@ public class CheckOut {
         });
 
         System.out.println();
-        System.out.print("Check Out? (Y/N)");
+        System.out.print("Check Out? (Y/N): ");
         String userChoice = scanner.nextLine();
 
         if (userChoice.equalsIgnoreCase("y")) {
