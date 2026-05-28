@@ -14,7 +14,7 @@ public class OrderController {
 
     OrderController() {
     }
-
+//    All endpoints return the order as a confirmation to the client.
     @GetMapping("/order/get")
     Order getCurrentOrder() {
         if (this.order == null) {
@@ -26,7 +26,6 @@ public class OrderController {
     @PostMapping("/order/edit")
     Order editOrder(@RequestBody Order order) {
         this.order = order;
-//        Return order to confirm changes to client
         return this.order;
     }
 
@@ -38,11 +37,16 @@ public class OrderController {
 
     @PostMapping("/order/delivery")
     Order setDeliveryMethod(@RequestBody boolean method) {
-        if(method) {
+        if (method) {
             this.order.setDeliveryMethod("delivery");
         } else {
             this.order.setDeliveryMethod("pickUp");
         }
+        return this.order;
+    }
+
+    Order setAddress(@RequestBody String address) {
+        this.order.setAddress(address);
         return this.order;
     }
 }
