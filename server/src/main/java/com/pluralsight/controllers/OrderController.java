@@ -6,6 +6,9 @@ import com.pluralsight.models.Pizza;
 import com.pluralsight.receipt.ReceiptWriter;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
+import java.util.Map;
+
 @RestController
 //Please let me through cors
 @CrossOrigin
@@ -59,13 +62,14 @@ public class OrderController {
         return this.order;
     }
 
+    //    Map workaround for sending json instead of a string which the client cannot handle
     @GetMapping("/order/checkout")
-    String checkoutOrder() {
+    Map<String, String> checkoutOrder() {
         String receipt = ReceiptWriter.createReceipt(this.order);
 //       Reset the order for the next one
         this.order = null;
 
-        return receipt;
+        return Collections.singletonMap("response", receipt);
 
     }
 }
