@@ -181,7 +181,7 @@ public class Menu {
                 scanner.nextLine();
 
                 switch (userChoice) {
-                    case 1 -> System.out.println("Specialty Pizzas");
+                    case 1 -> specialtyPizzaMenu(pizza);
                     case 2 -> customPizzaMenu(pizza);
                     case 3 -> menuRunning = false;
                     default -> System.out.println("Enter a valid option!");
@@ -189,6 +189,35 @@ public class Menu {
                 order.addItem(pizza);
                 menuRunning = false;
             } catch (Exception e) {
+                System.out.println("Enter a valid number!");
+            }
+        }
+    }
+
+    public static void specialtyPizzaMenu(Pizza pizza) {
+        SpecialtyPizza[] allPizzas = SpecialtyPizza.values();
+
+        while (true) {
+            try {
+                System.out.println("= Specialty Pizzas =");
+
+                for (SpecialtyPizza sPizza : SpecialtyPizza.values()) {
+                    System.out.println((sPizza.ordinal() + 1) + ". " + sPizza.getName());
+                }
+
+                System.out.println();
+                System.out.print("Choose a pizza: ");
+                int userChoice = scanner.nextInt();
+
+                sizeMenu(pizza);
+//                Default crust for specialties
+                pizza.setCrust(Crust.REGULAR);
+//                Add all toppings included in specialty pizza
+                allPizzas[userChoice - 1].getToppings().forEach(pizza::addTopping);
+
+                System.out.println("Pizza Added!");
+                break;
+            } catch (NumberFormatException e) {
                 System.out.println("Enter a valid number!");
             }
         }
