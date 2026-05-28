@@ -17,7 +17,7 @@ public class ReceiptWriter {
     public static String createReceipt(Order order) {
         String timeStamp = generateTimeStamp();
         try {
-            FileWriter fileWriter = new FileWriter("src/main/resources/receipts/" + timeStamp + ".txt");
+            FileWriter fileWriter = new FileWriter("server/src/main/resources/receipts/" + timeStamp + ".txt");
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
             StringBuilder receiptToReturn = new StringBuilder();
 
