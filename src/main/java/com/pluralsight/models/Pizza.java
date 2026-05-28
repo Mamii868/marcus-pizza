@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Pizza implements MenuItem {
     private Crust crust;
     private Size size;
-    private final ArrayList<Topping> toppings;
+    private ArrayList<Topping> toppings;
     private double price;
     private String name;
 
@@ -20,6 +20,10 @@ public class Pizza implements MenuItem {
 
     public void addTopping(Topping topping) {
         this.toppings.add(topping);
+    }
+
+    public void setToppings(ArrayList<Topping> toppings) {
+        this.toppings = toppings;
     }
 
     public void setSize(Size size) {
@@ -47,8 +51,14 @@ public class Pizza implements MenuItem {
 //        Resets price so prices aren't incorrectly added
         this.price = 6.00;
 
-        this.price += size.getPrice();
-        this.price += crust.getPrice();
+//        Null checks for api
+        if (this.size != null) {
+            this.price += size.getPrice();
+        }
+        if (this.crust != null) {
+            this.price += crust.getPrice();
+        }
+
 //        Loop through toppings to get all the prices
         for (Topping topping : toppings) {
             this.price += topping.getPrice();
