@@ -15,9 +15,7 @@ public class PizzaController {
 
     @GetMapping("/pizza/get")
     Pizza getPizza() {
-        if (this.pizza != null) {
-            return this.pizza;
-        }
+//        Will remove pizza if it exists to restart
         this.pizza = new Pizza();
         return this.pizza;
     }
