@@ -1,15 +1,14 @@
 package com.pluralsight.controllers;
 
 import com.pluralsight.models.*;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 //All endpoints return the pizza as confirmation
 @RestController
+//Please let me through cors
+@CrossOrigin
 public class PizzaController {
     private Pizza pizza;
 

@@ -4,12 +4,11 @@ import com.pluralsight.models.MenuItem;
 import com.pluralsight.models.Order;
 import com.pluralsight.models.Pizza;
 import com.pluralsight.receipt.ReceiptWriter;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+//Please let me through cors
+@CrossOrigin
 public class OrderController {
 
     private Order order;
