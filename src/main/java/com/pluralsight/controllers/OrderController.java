@@ -15,7 +15,7 @@ public class OrderController {
     OrderController() {
     }
 
-    @GetMapping("/getOrder")
+    @GetMapping("/order/get")
     Order getCurrentOrder() {
         if (this.order == null) {
             this.order = new Order();
@@ -23,18 +23,26 @@ public class OrderController {
         return this.order;
     }
 
-    @PostMapping("/editOrder")
+    @PostMapping("/order/edit")
     Order editOrder(@RequestBody Order order) {
         this.order = order;
 //        Return order to confirm changes to client
         return this.order;
     }
 
-    @PostMapping("/addItem")
+    @PostMapping("/order/add")
     Order addItem(@RequestBody MenuItem item) {
         this.order.addItem(item);
         return this.order;
     }
 
-
+    @PostMapping("/order/delivery")
+    Order setDeliveryMethod(@RequestBody boolean method) {
+        if(method) {
+            this.order.setDeliveryMethod("delivery");
+        } else {
+            this.order.setDeliveryMethod("pickUp");
+        }
+        return this.order;
+    }
 }
