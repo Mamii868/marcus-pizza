@@ -2,6 +2,8 @@ package com.pluralsight.controllers;
 
 import com.pluralsight.models.MenuItem;
 import com.pluralsight.models.Order;
+import com.pluralsight.models.Pizza;
+import com.pluralsight.receipt.ReceiptWriter;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,7 +16,8 @@ public class OrderController {
 
     OrderController() {
     }
-//    All endpoints return the order as a confirmation to the client.
+
+    //    All endpoints return the order as a confirmation to the client.
     @GetMapping("/order/get")
     Order getCurrentOrder() {
         if (this.order == null) {
@@ -29,9 +32,15 @@ public class OrderController {
         return this.order;
     }
 
-    @PostMapping("/order/add")
+    @PostMapping("/order/add/item")
     Order addItem(@RequestBody MenuItem item) {
         this.order.addItem(item);
+        return this.order;
+    }
+
+    @PostMapping("/order/add/pizza")
+    Order addItem(@RequestBody Pizza pizza) {
+        this.order.addItem(pizza);
         return this.order;
     }
 
@@ -45,8 +54,19 @@ public class OrderController {
         return this.order;
     }
 
+    @PostMapping("/order/address")
     Order setAddress(@RequestBody String address) {
         this.order.setAddress(address);
         return this.order;
+    }
+
+    @GetMapping("/order/checkout")
+    String checkoutOrder() {
+        String receipt = ReceiptWriter.createReceipt(this.order);
+//       Reset the order for the next one
+        this.order = null;
+
+        return receipt;
+
     }
 }
