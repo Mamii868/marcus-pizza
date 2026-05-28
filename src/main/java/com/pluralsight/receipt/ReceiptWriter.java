@@ -23,27 +23,27 @@ public class ReceiptWriter {
 //            Write the pizza and toppings for each one
             order.getPizzas().forEach(pizza -> {
                 try {
-                    bufferedWriter.write(pizza.getSize().getName() + " " + pizza.getCrust().getName() + " Pizza: " + String.format("$%.2f", pizza.getPrice()));
+                    bufferedWriter.write(pizza.getSize().getName() + " " + pizza.getCrust().getName() + " Pizza: " + String.format("$%.2f", pizza.getPrice()) + "\n");
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
 
                 pizza.getToppings().forEach(topping -> {
                     try {
-                        bufferedWriter.write("     - " + topping.getName());
+                        bufferedWriter.write("     - " + topping.getName() + "\n");
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
                 });
             });
 
-            bufferedWriter.write("");
+            bufferedWriter.write("\n");
 
             order.getItems().forEach(item -> {
 //                Make sure not to rewrite pizzas to receipt
                 if (!(item instanceof Pizza)) {
                     try {
-                        bufferedWriter.write(item.getName() + ": $" + String.format("%.2f", item.getPrice()));
+                        bufferedWriter.write(item.getName() + ": $" + String.format("%.2f", item.getPrice()) + "\n");
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -52,7 +52,6 @@ public class ReceiptWriter {
 
             bufferedWriter.close();
         } catch (Exception e) {
-            e.printStackTrace();
             System.out.println("Something went wrong writing to the file!");
         }
     }
