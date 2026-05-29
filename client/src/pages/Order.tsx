@@ -35,9 +35,9 @@ const Order = () => {
     <>
       <NavBar />
       {isCartOpen && <CartPopup />}
-      <div className="w-full text-white my-10">
+      <div className="w-full text-white my-10 h-max flex flex-col grow">
         <div className="featured">
-          <h2 className="text-2xl font-bold mb-4 text-center">Featured</h2>
+          <h2 className="text-4xl font-bold mb-4 text-center">Featured</h2>
           <div className="featuredList w-full flex flex-col md:flex-row gap-4 p-4">
             {specialties &&
               specialties
@@ -46,16 +46,16 @@ const Order = () => {
           </div>
         </div>
         <div className="menu">
-          <h2 className="text-2xl font-bold mb-4 text-center">Menu</h2>
-          <div className="menuList w-full flex flex-col gap-4 p-4">
-            <button onClick={() => handlepopupDisplay("Pizzas")} className="w-full bg-dark-bg p-4 rounded-2xl border border-border text-left">
-              <p className="text-lg font-bold">Pizzas</p>
+          <h2 className="text-4xl font-bold mb-4 text-center">Menu</h2>
+          <div className="menuList w-full flex gap-4 p-4">
+            <button onClick={() => handlepopupDisplay("Pizzas")} className="w-full bg-dark-bg p-4 h-48 hover:bg-darkorange transition duration-200 rounded-2xl border border-border text-center cursor-pointer">
+              <p className="text-2xl font-bold">Pizzas</p>
             </button>
-            <button onClick={() => handlepopupDisplay("Sides")} className="w-full bg-dark-bg p-4 rounded-2xl border border-border text-left">
-              <p className="text-lg font-bold">Sides</p>
+            <button onClick={() => handlepopupDisplay("Sides")} className="w-full bg-dark-bg p-4 h-48 hover:bg-darkorange transition duration-200 rounded-2xl border border-border text-center cursor-pointer">
+              <p className="text-2xl font-bold">Sides</p>
             </button>
-            <button onClick={() => handlepopupDisplay("Drinks")} className="w-full bg-dark-bg p-4 rounded-2xl border border-border text-left">
-              <p className="text-lg font-bold">Drinks</p>
+            <button onClick={() => handlepopupDisplay("Drinks")} className="w-full bg-dark-bg p-4 h-48 hover:bg-darkorange transition duration-200 rounded-2xl border border-border text-center cursor-pointer">
+              <p className="text-2xl font-bold">Drinks</p>
             </button>
           </div>
         </div>

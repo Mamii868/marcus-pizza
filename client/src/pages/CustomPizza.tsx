@@ -124,7 +124,7 @@ const CustomPizza = () => {
                     onClick={() => handleToppingToggle(topping.name)}
                     // I don't like some... but here we are
                     className={`border border-orange p-4 rounded-xl text-base font-bold transition duration-200 cursor-pointer  flex flex-col items-center gap-1 ${pizza.toppings.find((t) => t.name === topping.name.toUpperCase().replace(" ", "_").replace("-", "_")) ? "bg-orange" : "hover:bg-darkorange bg-dark-bg"}`}>
-                    <span>{topping.name}</span>     
+                    <span>{topping.name}</span>
                     <span className="text-sm font-normal">+${topping.price?.toFixed(2)}</span>
                   </button>
                 ))}

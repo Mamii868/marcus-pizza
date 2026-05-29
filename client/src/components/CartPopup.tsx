@@ -3,9 +3,14 @@ import type { Pizza } from "../types/pizzaTypes";
 import Button from "./Button";
 
 const CartPopup = () => {
-  const { cart, cartAmount, cartError } = useCartContext();
+  const { cart, cartAmount, cartError, setIsCartOpen } = useCartContext();
   return (
-    <div className="cart w-1/2 h-full absolute top-0 right-0 bg-dark-bg p-4 rounded-l-2xl border border-border text-white flex flex-col gap-4">
+    <div className="cart w-1/3 h-full absolute top-0 right-0 bg-dark-bg p-4 rounded-l-2xl border border-border text-white flex flex-col gap-4 pt-18">
+      <button
+        onClick={() => setIsCartOpen(false)}
+        className="bg-red-500 text-white font-bold rounded-full px-4 py-2 hover:bg-red-700 transition duration-200 cursor-pointer self-end">
+        <p>X</p>
+      </button>
       <h2 className="text-2xl font-bold mb-4 text-center">Your Cart</h2>
       <div className="cartItems flex flex-col gap-2 overflow-y-scroll">
         {cartAmount === 0 ? (
@@ -17,7 +22,7 @@ const CartPopup = () => {
               //   Yes this can break but I trust in the server
               const pizza = item as unknown as Pizza;
               return (
-                <div key={index} className="border border-border p-2 rounded-lg">
+                <div key={index} className="border border-border bg-dark-lightbg p-2 rounded-lg">
                   <p className="text-lg font-bold">{pizza.crust.name} Pizza</p>
                   <p>Size: {pizza.size.name}</p>
                   <p>Toppings:</p>

@@ -9,7 +9,7 @@ import CustomPizza from "./pages/CustomPizza";
 const root = document.getElementById("root")!;
 
 ReactDOM.createRoot(root).render(
-  <>
+  <div className="app w-full h-screen flex flex-col">
     <BrowserRouter>
       <Routes>
         <Route element={<CartProvider />}>
@@ -20,5 +20,5 @@ ReactDOM.createRoot(root).render(
         </Route>
       </Routes>
     </BrowserRouter>
-  </>,
+  </div>,
 );
