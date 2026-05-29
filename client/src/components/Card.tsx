@@ -1,8 +1,9 @@
-import { addPizza } from "../services/orderService";
+import { useCartContext } from "../providers/CartProvider";
 import type { Pizza, Specialty } from "../types/pizzaTypes";
 import Button from "./Button";
 
 const Card = ({ name, toppings, price }: Specialty) => {
+  const { addPizzaToCart } = useCartContext();
   const handleAddToCart = () => {
     const pizza: Pizza = {
       crust: "REGULAR",
@@ -10,7 +11,7 @@ const Card = ({ name, toppings, price }: Specialty) => {
       toppings: toppings.map((topping) => topping.name.toUpperCase()),
     };
 
-    addPizza(pizza);
+    addPizzaToCart(pizza);
   };
   return (
     <div className="card w-full flex flex-col items-center gap-2 text-center p-2 text-white bg-dark-lightbg rounded-2xl border border-border">

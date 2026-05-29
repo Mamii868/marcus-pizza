@@ -1,7 +1,8 @@
-import { createContext, useContext, useState, type ReactNode } from "react";
+import { createContext, useContext, useState } from "react";
 import type { MenuItem, Order } from "../types/orderTypes";
 import { addItem, addPizza, getOrder } from "../services/orderService";
 import type { Pizza } from "../types/pizzaTypes";
+import { Outlet } from "react-router";
 
 interface CartProviderProps {
   cart: Order;
@@ -11,10 +12,10 @@ interface CartProviderProps {
   addPizzaToCart: (pizza: Pizza) => Promise<void>;
 }
 
-const cartContext = createContext<CartProviderProps | undefined>(undefined);
+const CartContext = createContext<CartProviderProps | undefined>(undefined);
 
 // Allows use of functions and variables across the app
-export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+export const CartProvider: React.FC = () => {
   const [cart, setCart] = useState<Order>({
     deliveryMethod: "",
     address: "",
@@ -36,12 +37,16 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     await updateCart();
   };
 
-  return <cartContext.Provider value={{ cart, setCart, updateCart, addItemToCart, addPizzaToCart }}>{children}</cartContext.Provider>;
+  return (
+    <CartContext.Provider value={{ cart, setCart, updateCart, addItemToCart, addPizzaToCart }}>
+      <Outlet />
+    </CartContext.Provider>
+  );
 };
 
 // Context for all my cart things with error handling when I eventually mess this up
 export const useCartContext = () => {
-  const context = useContext(cartContext);
+  const context = useContext(CartContext);
   if (!context) {
     throw new Error("useCartContext must be used within a CartProvider");
   }
