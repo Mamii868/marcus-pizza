@@ -1,7 +1,17 @@
-import type { Specialty } from "../types/pizzaTypes";
+import { addPizza } from "../services/orderService";
+import type { Pizza, Specialty } from "../types/pizzaTypes";
 import Button from "./Button";
 
 const Card = ({ name, toppings, price }: Specialty) => {
+  const handleAddToCart = () => {
+    const pizza: Pizza = {
+      crust: "REGULAR",
+      size: "MEDIUM",
+      toppings: toppings.map((topping) => topping.name.toUpperCase()),
+    };
+
+    addPizza(pizza);
+  };
   return (
     <div className="card w-full flex flex-col items-center gap-2 text-center p-2 text-white bg-dark-lightbg rounded-2xl border border-border">
       <div className="title">
@@ -16,7 +26,7 @@ const Card = ({ name, toppings, price }: Specialty) => {
         ))}
       </div>
       <p className="text-lg font-bold">${price.toFixed(2)}</p>
-      <Button>Add to Cart</Button>
+      <Button onClick={handleAddToCart}>Add to Cart</Button>
     </div>
   );
 };
