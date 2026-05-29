@@ -9,8 +9,8 @@ const PizzaPopup = ({ specialties, setPopupVisible }: { specialties: Specialty[]
         <div className="exitButton w-full flex justify-end p-4">
           <button
             onClick={() => setPopupVisible(false)}
-            className="bg-red-500 text-white font-bold rounded-full px-4 py-2 hover:bg-red-500 transition duration-200 cursor-pointer">
-            <p>Close</p>
+            className="bg-red-500 text-white font-bold rounded-full px-4 py-2 hover:bg-red-700 transition duration-200 cursor-pointer">
+            <p>X</p>
           </button>
         </div>
         <Link
@@ -18,6 +18,7 @@ const PizzaPopup = ({ specialties, setPopupVisible }: { specialties: Specialty[]
           className="w-full bg-orange p-4 rounded-2xl border border-border text-left hover:bg-darkorange transition duration-200 cursor-pointer">
           <p className="text-lg font-bold">Create Custom Pizza</p>
         </Link>
+        <h2 className="text-2xl font-bold mb-4 text-center">Specialties</h2>
         {specialties.map((specialty) => (
           <div key={specialty.name} onClick={() => setPopupVisible(false)}>
             <Card name={specialty.name} toppings={specialty.toppings} price={specialty.price} />
