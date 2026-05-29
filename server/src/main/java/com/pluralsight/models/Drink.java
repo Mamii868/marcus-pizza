@@ -1,5 +1,8 @@
 package com.pluralsight.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum Drink implements MenuItem {
     ONE_LITER("One Liter", 2.99),
     TWO_LITER("Two Liter", 3.99);

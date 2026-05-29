@@ -1,5 +1,8 @@
 package com.pluralsight.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum Side implements MenuItem {
     GARLIC_BREAD("Garlic Bread", 4.50),
     CHEESE_BREAD("Cheese Bread", 6.99),

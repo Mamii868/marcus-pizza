@@ -1,5 +1,8 @@
 package com.pluralsight.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum Crust {
     REGULAR("Regular", 0),
     THIN("Thin", 0),

@@ -1,5 +1,8 @@
 package com.pluralsight.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum Size {
     SMALL("Small - 8in", 0),
     MEDIUM("Medium - 12in", 2.00),
