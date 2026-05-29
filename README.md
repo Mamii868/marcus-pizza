@@ -551,3 +551,7 @@ cd server
 - `OrderController` resets the active order after checkout.
 - `PizzaController` assumes a pizza has already been initialized through `GET /pizza/get` before the other pizza endpoints are used.
 - The React app uses the `MenuController` endpoints for menu data. `SideController` still exists in the backend but is not the main path used by the frontend.
+
+## Acknowledgments
+This README was initially drafted with GitHub Copilot and then reviewed, edited, and verified by Marc Moten (myself).
+documentation drafting assistance was provided by GitHub Copilot (GPT-5.4); the final content was edited and validated by the author.
