@@ -7,7 +7,7 @@ const NavBar = () => {
 
   useEffect(() => {
     updateCart();
-  }, [updateCart]);
+  }, []);
   return (
     <nav className="navbar w-full p-2 h-12 bg-dark-lightbg text-white flex items-center justify-between">
       <Link to="/" className="font-bold text-xl">
