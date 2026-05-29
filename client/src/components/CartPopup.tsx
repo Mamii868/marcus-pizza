@@ -12,7 +12,7 @@ const CartPopup = () => {
         <p>X</p>
       </button>
       <h2 className="text-2xl font-bold mb-4 text-center">Your Cart</h2>
-      <div className="cartItems flex flex-col gap-2 overflow-y-scroll">
+      <div className="cartItems flex flex-col gap-2 overflow-y-auto grow">
         {cartAmount === 0 ? (
           <p className="text-lg font-bold">Your cart is empty</p>
         ) : (
@@ -36,14 +36,14 @@ const CartPopup = () => {
               );
             } else {
               return (
-                <p key={index} className="text-lg font-bold">
-                    {/* This fixes the names from the enums within the server */}
+                <p key={index} className="border border-border bg-dark-lightbg p-2 rounded-lg">
+                  {/* This fixes the names from the enums within the server */}
                   {item.name
                     .toLowerCase()
                     .split("_")
                     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
                     .join(" ")}{" "}
-                  - ${item.price?.toFixed(2)}
+                  - <span className="text-lg font-bold">${item.price?.toFixed(2)}</span>
                 </p>
               );
             }
