@@ -34,20 +34,18 @@ const CustomPizza = () => {
     fetchToppingOptions();
   }, []);
 
-  useEffect(() => {
-    console.log(pizza);
-  }, [pizza]);
-
   const handleSubmit = (e: React.SubmitEvent) => {
     e.preventDefault();
     addPizzaToCart(pizza);
   };
 
   const handleToppingToggle = (toppingName: string) => {
+    // Check if the topping was selected already so it can be deselected
     setPizza((prev) => {
       const isToppingSelected = prev.toppings.includes(toppingName);
-      const newToppings = isToppingSelected ? prev.toppings.filter((t) => t !== toppingName) : [...prev.toppings, toppingName];
-      return { ...prev, toppings: newToppings };
+      const newToppings = isToppingSelected ? prev.toppings.filter((topping) => topping !== toppingName) : [...prev.toppings, toppingName];
+      const formattedToppings = newToppings.map((topping) => topping.toUpperCase().replace(" ", "_").replace("-", "_"));
+      return { ...prev, toppings: formattedToppings };
     });
   };
 
@@ -73,7 +71,7 @@ const CustomPizza = () => {
                     Select a crust...
                   </option>
                   {crustOptions.map((crust) => (
-                    <option key={crust.name} value={crust.name.toUpperCase().replace(" ", "_")}>
+                    <option key={crust.name} value={crust.name.toUpperCase().replace(" ", "_").replace("-", "_")}>
                       {crust.name}
                     </option>
                   ))}
@@ -89,8 +87,8 @@ const CustomPizza = () => {
                   <button
                     key={size.name}
                     type="button"
-                    onClick={() => setPizza((prev) => ({ ...prev, size: size.name.toUpperCase().split(" ")[0]}))}
-                    className={`border border-orange p-4 rounded-xl text-base font-bold transition duration-200 cursor-pointer hover:bg-darkorange flex flex-col items-center gap-1 ${pizza.size === size.name.toUpperCase().replace(" ", "_") ? "bg-orange" : "bg-dark-bg"}`}>
+                    onClick={() => setPizza((prev) => ({ ...prev, size: size.name.toUpperCase().split(" ")[0] }))}
+                    className={`border border-orange p-4 rounded-xl text-base font-bold transition duration-200 cursor-pointer hover:bg-darkorange flex flex-col items-center gap-1 ${pizza.size === size.name.toUpperCase().split(" ")[0] ? "bg-orange" : "bg-dark-bg"}`}>
                     <span>{size.name}</span>
                     <span className="text-sm font-normal">+${size.price?.toFixed(2)}</span>
                   </button>
@@ -106,7 +104,7 @@ const CustomPizza = () => {
                     key={topping.name}
                     type="button"
                     onClick={() => handleToppingToggle(topping.name)}
-                    className={`border border-orange p-4 rounded-xl text-base font-bold transition duration-200 cursor-pointer  flex flex-col items-center gap-1 ${pizza.toppings.includes(topping.name) ? "bg-orange" : "hover:bg-darkorange bg-dark-bg"}`}>
+                    className={`border border-orange p-4 rounded-xl text-base font-bold transition duration-200 cursor-pointer  flex flex-col items-center gap-1 ${pizza.toppings.includes(topping.name.toUpperCase().replace(" ", "_").replace("-", "_")) ? "bg-orange" : "hover:bg-darkorange bg-dark-bg"}`}>
                     <span>{topping.name}</span>
                     <span className="text-sm font-normal">+${topping.price?.toFixed(2)}</span>
                   </button>
