@@ -1,5 +1,7 @@
 package com.pluralsight.models;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 public enum Topping {
     //    All the meats
     PEPPERONI("Pepperoni", 1.50),
@@ -29,7 +31,8 @@ public enum Topping {
         this.price = price;
     }
 
-
+//    Makes the toppings in the api request show as the name and not the enum identifier
+    @JsonValue
     public String getName() {
         return name;
     }

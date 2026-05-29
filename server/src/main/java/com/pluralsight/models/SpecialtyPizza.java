@@ -1,7 +1,10 @@
 package com.pluralsight.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.List;
 
+@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum SpecialtyPizza {
     PEPPERONI_EXTREME("Pepperoni Extreme", List.of(Topping.PEPPERONI, Topping.PEPPERONI, Topping.PEPPERONI)),
     HAWAIIAN("Hawaiian", List.of(Topping.PINEAPPLE, Topping.HAM)),
@@ -22,5 +25,10 @@ public enum SpecialtyPizza {
 
     public List<Topping> getToppings() {
         return toppings;
+    }
+
+    public double getPrice() {
+        return toppings.stream().mapToDouble(Topping::getPrice).sum();
+
     }
 }
