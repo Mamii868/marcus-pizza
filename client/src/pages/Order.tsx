@@ -3,6 +3,7 @@ import { getSpecialties } from "../services/menuService";
 import Card from "../components/Card";
 import type { Specialty } from "../types/pizzaTypes";
 import PizzaPopup from "../components/PizzaPopup";
+import { getOrder } from "../services/orderService";
 
 const Order = () => {
   const [specialties, setSpecialties] = useState<Specialty[]>();
@@ -11,6 +12,8 @@ const Order = () => {
 
   // Fetch specialties to display within cards
   useEffect(() => {
+    getOrder();
+
     const fetchSpecialties = async () => {
       const data = await getSpecialties();
       setSpecialties(data);
@@ -18,7 +21,7 @@ const Order = () => {
     fetchSpecialties();
   }, []);
 
-//   Set specific popup to display based on button selected
+  //   Set specific popup to display based on button selected
   const handlepopupDisplay = (category: string) => {
     setSelectedCategory(category);
     setPopupVisible(true);
@@ -32,9 +35,7 @@ const Order = () => {
           {specialties &&
             specialties
               .slice(0, 3)
-              .map((specialty) => (
-                <Card key={specialty.name} name={specialty.name} toppings={specialty.toppings} price={specialty.price} />
-              ))}
+              .map((specialty) => <Card key={specialty.name} name={specialty.name} toppings={specialty.toppings} price={specialty.price} />)}
         </div>
       </div>
       <div className="menu">
