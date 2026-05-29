@@ -11,6 +11,7 @@ import SidePopup from "../components/SidePopup";
 import type { MenuItem } from "../types/orderTypes";
 import DrinkPopup from "../components/DrinkPopup";
 import CheckoutPopup from "../components/CheckoutPopup";
+import ItemAddedPopup from "../components/ItemAddedPopup";
 
 const Order = () => {
   const { isCartOpen, isCheckoutOpen } = useCartContext();
@@ -88,6 +89,7 @@ const Order = () => {
         {popupVisible && selectedCategory === "Sides" && sides && <SidePopup sides={sides} setPopupVisible={setPopupVisible} />}
         {popupVisible && selectedCategory === "Drinks" && drinks && <DrinkPopup drinks={drinks} setPopupVisible={setPopupVisible} />}
         {isCheckoutOpen && <CheckoutPopup />}
+        <ItemAddedPopup />
       </div>
     </>
   );

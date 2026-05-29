@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useRef, useState } from "react";
 import type { MenuItem, Order } from "../types/orderTypes";
 import { addItem, addPizza, getOrder } from "../services/orderService";
 import type { Pizza } from "../types/pizzaTypes";
@@ -17,6 +17,7 @@ interface CartProviderProps {
   setIsCartOpen: (isOpen: boolean) => void;
   isCheckoutOpen: boolean;
   setIsCheckoutOpen: (isOpen: boolean) => void;
+  cartItemRef: React.RefObject<number>;
 }
 
 const CartContext = createContext<CartProviderProps | undefined>(undefined);
@@ -32,6 +33,7 @@ export const CartProvider: React.FC = () => {
   const [cartError, setCartError] = useState<string | null>(null);
   const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState<boolean>(false);
+  const cartItemRef = useRef(cart.items.length);
 
   const updateCart = async () => {
     const cartData = await getOrder();
@@ -84,6 +86,7 @@ export const CartProvider: React.FC = () => {
         setIsCartOpen,
         isCheckoutOpen,
         setIsCheckoutOpen,
+        cartItemRef,
       }}>
       <Outlet />
     </CartContext.Provider>

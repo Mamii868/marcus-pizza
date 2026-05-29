@@ -11,7 +11,7 @@ const CartPopup = () => {
   };
 
   return (
-    <div className="cart w-1/3 h-full absolute top-0 right-0 bg-dark-bg p-4 rounded-l-2xl border border-border text-white flex flex-col gap-4 pt-18">
+    <div className="cart w-1/3 h-full absolute top-0 right-0 bg-dark-bg p-4 rounded-l-2xl border border-border text-white flex flex-col gap-4 pt-18 z-10">
       <button
         onClick={() => setIsCartOpen(false)}
         className="bg-red-500 text-white font-bold rounded-full px-4 py-2 hover:bg-red-700 transition duration-200 cursor-pointer self-end">
