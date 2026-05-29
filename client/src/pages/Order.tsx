@@ -19,10 +19,12 @@ const Order = () => {
     <div className="w-full">
       <div className="featured">
         <h2>Featured</h2>
-        {specialties &&
-          specialties.map((specialty) => (
-            <Card key={specialty.name} title={specialty.name} toppings={specialty.toppings} crust={"Regular"} price={specialty.price} />
-          ))}
+        <div className="featuredList w-full flex flex-col md:flex-row gap-4">
+          {specialties &&
+            specialties.map((specialty) => (
+              <Card key={specialty.name} title={specialty.name} toppings={specialty.toppings} crust={"Regular"} price={specialty.price} />
+            ))}
+        </div>
       </div>
     </div>
   );
