@@ -1,4 +1,4 @@
-import type { MenuItem } from "../types/orderTypes";
+import type { MenuItem, Order } from "../types/orderTypes";
 import type { Pizza } from "../types/pizzaTypes";
 
 // Get existing/create new order from api
@@ -8,7 +8,7 @@ export const getOrder = async () => {
   if (!response.ok) {
     throw new Error("Failed to fetch order data");
   }
-  const data = await response.json();
+  const data: Order = await response.json();
   console.log("Order data:", data);
   return data;
 };
