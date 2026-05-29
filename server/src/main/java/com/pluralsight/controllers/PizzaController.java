@@ -3,7 +3,7 @@ package com.pluralsight.controllers;
 import com.pluralsight.models.*;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.*;
 
 //All endpoints return the pizza as confirmation
 @RestController
@@ -18,6 +18,12 @@ public class PizzaController {
         this.pizza = new Pizza();
         return this.pizza;
     }
+
+    @GetMapping("/pizza/specialties")
+    SpecialtyPizza[] getSpecialties() {
+        return SpecialtyPizza.values();
+    }
+
 
     @PostMapping("/pizza/crust")
     Pizza setCrust(@RequestBody Crust crust) {
