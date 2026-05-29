@@ -1,5 +1,6 @@
 import Button from "./Button";
 import heroImage from "../assets/pizzaImage.jpg";
+import { Link } from "react-router";
 
 const Hero = () => {
   return (
@@ -14,7 +15,9 @@ const Hero = () => {
         <p className="text-lg mb-8 opacity-0 animate-fade-up">The best pizza in Dallas, TX.</p>
       </div>
       <div className="flex flex-col md:flex-row opacity-0 animate-fade-up">
-        <Button>Order Now</Button>
+        <Link to="/order">
+          <Button>Order Now</Button>
+        </Link>
       </div>
     </div>
   );

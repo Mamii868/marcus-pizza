@@ -4,7 +4,14 @@ import type { Pizza, Size, Specialty } from "../types/pizzaTypes";
 import Button from "./Button";
 import { getSizes } from "../services/menuService";
 
-const PizzaCard = ({ name, toppings, price }: Specialty) => {
+interface PizzaCardProps {
+  name: Specialty["name"];
+  toppings: Specialty["toppings"];
+  price: Specialty["price"];
+  setPopupVisible?: (visible: boolean) => void;
+}
+
+const PizzaCard = ({ name, toppings, price, setPopupVisible }: PizzaCardProps) => {
   const { addPizzaToCart } = useCartContext();
   const [size, setSize] = useState<string>("SMALL");
   const [sizeOptions, setSizeOptions] = useState<Size[]>([]);
@@ -25,6 +32,9 @@ const PizzaCard = ({ name, toppings, price }: Specialty) => {
     };
 
     addPizzaToCart(pizza);
+    if (setPopupVisible) {
+      setPopupVisible(false);
+    }
   };
   return (
     <div className="card w-full flex flex-col items-center gap-2 text-center p-2 text-white bg-dark-lightbg rounded-2xl border border-border">

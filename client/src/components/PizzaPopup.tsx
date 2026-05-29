@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import type { Specialty } from "../types/pizzaTypes";
-import Card from "./PizzaCard";
+import PizzaCard from "./PizzaCard";
 
 const PizzaPopup = ({ specialties, setPopupVisible }: { specialties: Specialty[]; setPopupVisible: (visible: boolean) => void }) => {
   return (
@@ -20,8 +20,8 @@ const PizzaPopup = ({ specialties, setPopupVisible }: { specialties: Specialty[]
         </Link>
         <h2 className="text-2xl font-bold mb-4 text-center">Specialties</h2>
         {specialties.map((specialty) => (
-          <div key={specialty.name} onClick={() => setPopupVisible(false)}>
-            <Card name={specialty.name} toppings={specialty.toppings} price={specialty.price} />
+          <div key={specialty.name}>
+            <PizzaCard name={specialty.name} toppings={specialty.toppings} price={specialty.price} setPopupVisible={setPopupVisible} />
           </div>
         ))}
       </div>
