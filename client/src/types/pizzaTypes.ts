@@ -14,9 +14,15 @@ type Topping = {
 
 // This has to be strings in order for the server to get the values for its enums
 type Pizza = {
-  crust: String;
-  size: String;
-  toppings: String[];
+  crust: string;
+  size: string;
+  toppings: string[];
 };
 
-export type { Pizza, Crust, Size, Topping };
+type Specialty = {
+  name: string;
+  toppings: Topping[];
+  price: number;
+}
+
+export type { Pizza, Crust, Size, Topping, Specialty };
