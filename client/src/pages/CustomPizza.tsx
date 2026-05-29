@@ -34,7 +34,11 @@ const CustomPizza = () => {
     fetchToppingOptions();
   }, []);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  useEffect(() => {
+    console.log(pizza);
+  }, [pizza]);
+
+  const handleSubmit = (e: React.SubmitEvent) => {
     e.preventDefault();
     addPizzaToCart(pizza);
   };
@@ -85,7 +89,7 @@ const CustomPizza = () => {
                   <button
                     key={size.name}
                     type="button"
-                    onClick={() => setPizza((prev) => ({ ...prev, size: size.name.toUpperCase().replace(" ", "_") }))}
+                    onClick={() => setPizza((prev) => ({ ...prev, size: size.name.toUpperCase().split(" ")[0]}))}
                     className={`border border-orange p-4 rounded-xl text-base font-bold transition duration-200 cursor-pointer hover:bg-darkorange flex flex-col items-center gap-1 ${pizza.size === size.name.toUpperCase().replace(" ", "_") ? "bg-orange" : "bg-dark-bg"}`}>
                     <span>{size.name}</span>
                     <span className="text-sm font-normal">+${size.price?.toFixed(2)}</span>
