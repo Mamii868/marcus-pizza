@@ -40,6 +40,11 @@ const CustomPizza = () => {
     try {
       e.preventDefault();
       setCartError(null);
+
+      if (!pizza.crust || !pizza.size) {
+        setCartError("Please select a crust and size for your pizza.");
+        return;
+      }
       await addPizzaToCart(pizza);
       navigate("/order");
     } catch (e: unknown) {
@@ -125,7 +130,7 @@ const CustomPizza = () => {
               className="w-full bg-orange hover:bg-darkorange text-white font-bold text-lg py-4 rounded-xl transition duration-200 cursor-pointer mt-2">
               Add to Cart
             </button>
-            {cartError && <p className="text-red-500 text-sm mt-2">{cartError}</p>}
+            {cartError && <p className="text-red-500 text-lg font-bold mt-2 text-center">{cartError}</p>}
           </form>
         </div>
       </div>
