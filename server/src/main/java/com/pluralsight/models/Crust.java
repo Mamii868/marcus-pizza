@@ -8,7 +8,7 @@ public enum Crust {
     THIN("Thin", 0),
     PAN("Pan", 3),
     DEEP_DISH("Deep Dish", 4.00),
-    STUFFED("Stuffed Crust", 6);
+    STUFFED("Stuffed", 6);
 
     private final String name;
     private final double price;
