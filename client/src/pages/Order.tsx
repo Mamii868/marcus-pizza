@@ -32,7 +32,7 @@ const Order = () => {
             specialties
               .slice(0, 3)
               .map((specialty) => (
-                <Card key={specialty.name} title={specialty.name} toppings={specialty.toppings} crust={"Regular"} price={specialty.price} />
+                <Card key={specialty.name} name={specialty.name} toppings={specialty.toppings} price={specialty.price} />
               ))}
         </div>
       </div>

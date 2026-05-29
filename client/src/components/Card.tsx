@@ -1,20 +1,15 @@
-import type { Topping } from "../types/pizzaTypes";
+import type { Specialty } from "../types/pizzaTypes";
 import Button from "./Button";
 
-interface CardProps {
-  title: string;
-  toppings: Topping[];
-  crust: string;
-  price: number;
-}
 
-const Card = ({ title, toppings, crust, price }: CardProps) => {
+
+const Card = ({ name, toppings, price }: Specialty) => {
   return (
     <div className="card w-full flex flex-col items-center gap-2 text-center p-2 text-white bg-dark-lightbg rounded-2xl border border-border">
       <div className="title">
-        <h2 className="text-xl font-bold border-b-2 border-orange">{title}</h2>
+        <h2 className="text-xl font-bold border-b-2 border-orange">{name}</h2>
       </div>
-      <p>{crust} Crust</p>
+      <p>Regular Crust</p>
       <div className="toppingList flex flex-col items-center grow">
         {toppings.map((topping, index) => (
           <p className="text-sm text-left w-full" key={index}>- {topping.name}</p>
