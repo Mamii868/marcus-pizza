@@ -1,6 +1,8 @@
+import type { Topping } from "../types/pizzaTypes";
+
 interface CardProps {
   title: string;
-  toppings: string[];
+  toppings: Topping[];
   crust: string;
   price: number;
 }
@@ -14,7 +16,7 @@ const Card = ({ title, toppings, crust, price }: CardProps) => {
       <p>{crust} Crust</p>
       <div className="toppingList">
         {toppings.map((topping) => (
-          <p>- {topping}</p>
+          <p key={topping.name}>- {topping.name}</p>
         ))}
       </div>
       <p>${price.toFixed(2)}</p>
