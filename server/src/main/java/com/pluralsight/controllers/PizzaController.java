@@ -19,12 +19,6 @@ public class PizzaController {
         return this.pizza;
     }
 
-    @GetMapping("/pizza/specialties")
-    SpecialtyPizza[] getSpecialties() {
-        return SpecialtyPizza.values();
-    }
-
-
     @PostMapping("/pizza/crust")
     Pizza setCrust(@RequestBody Crust crust) {
         this.pizza.setCrust(crust);
