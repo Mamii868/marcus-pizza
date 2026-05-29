@@ -28,7 +28,8 @@ public enum SpecialtyPizza {
     }
 
     public double getPrice() {
-        return toppings.stream().mapToDouble(Topping::getPrice).sum();
+//        Sum of toppings plus default pizza price
+        return toppings.stream().mapToDouble(Topping::getPrice).sum() + 6;
 
     }
 }
