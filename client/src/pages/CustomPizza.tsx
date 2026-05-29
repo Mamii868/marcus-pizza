@@ -41,7 +41,7 @@ const CustomPizza = () => {
       e.preventDefault();
       setCartError(null);
 
-      if (!pizza.crust || !pizza.size) {
+      if (!pizza.crust.name || !pizza.size.name) {
         setCartError("Please select a crust and size for your pizza.");
         return;
       }
@@ -56,7 +56,7 @@ const CustomPizza = () => {
     // Check if the topping was selected already so it can be deselected
     setPizza((prev) => {
       // Ew some
-      const isToppingSelected = prev.toppings.some((topping) => topping.name === toppingName);
+      const isToppingSelected = prev.toppings.find((topping) => topping.name === toppingName);
       const newToppings = isToppingSelected
         ? prev.toppings.filter((topping) => topping.name !== toppingName)
         : [...prev.toppings, { name: toppingName }];
@@ -123,8 +123,8 @@ const CustomPizza = () => {
                     type="button"
                     onClick={() => handleToppingToggle(topping.name)}
                     // I don't like some... but here we are
-                    className={`border border-orange p-4 rounded-xl text-base font-bold transition duration-200 cursor-pointer  flex flex-col items-center gap-1 ${pizza.toppings.some((topping) => topping.name === topping.name.toUpperCase().replace(" ", "_").replace("-", "_")) ? "bg-orange" : "hover:bg-darkorange bg-dark-bg"}`}>
-                    <span>{topping.name}</span>
+                    className={`border border-orange p-4 rounded-xl text-base font-bold transition duration-200 cursor-pointer  flex flex-col items-center gap-1 ${pizza.toppings.find((t) => t.name === topping.name.toUpperCase().replace(" ", "_").replace("-", "_")) ? "bg-orange" : "hover:bg-darkorange bg-dark-bg"}`}>
+                    <span>{topping.name}</span>     
                     <span className="text-sm font-normal">+${topping.price?.toFixed(2)}</span>
                   </button>
                 ))}
