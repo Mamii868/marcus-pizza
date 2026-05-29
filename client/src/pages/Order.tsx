@@ -6,6 +6,8 @@ import { Link } from "react-router";
 
 const Order = () => {
   const [specialties, setSpecialties] = useState<Specialty[]>();
+  const [selectedCategory, setSelectedCategory] = useState<string>();
+  const [popupVisible, setPopupVisible] = useState(false);
 
   // Fetch specialties to display within cards
   useEffect(() => {
@@ -15,6 +17,11 @@ const Order = () => {
     };
     fetchSpecialties();
   }, []);
+
+  const handlepopupDisplay = (category: string) => {
+    setSelectedCategory(category);
+    setPopupVisible(true);
+  }
 
   return (
     <div className="w-full text-white my-10">
@@ -32,15 +39,15 @@ const Order = () => {
       <div className="menu">
         <h2 className="text-2xl font-bold mb-4 text-center">Menu</h2>
         <div className="menuList w-full flex flex-col gap-4 p-4">
-          <Link to="pizzas" className="w-full bg-dark-bg p-4 rounded-2xl border border-border text-left">
+          <button onClick={() => handlepopupDisplay("Pizzas")} className="w-full bg-dark-bg p-4 rounded-2xl border border-border text-left">
             <p className="text-lg font-bold">Pizzas</p>
-          </Link>
-          <Link to="sides" className="w-full bg-dark-bg p-4 rounded-2xl border border-border text-left">
+          </button>
+          <button onClick={() => handlepopupDisplay("Sides")} className="w-full bg-dark-bg p-4 rounded-2xl border border-border text-left">
             <p className="text-lg font-bold">Sides</p>
-          </Link>
-          <Link to="drinks" className="w-full bg-dark-bg p-4 rounded-2xl border border-border text-left">
+          </button>
+          <button onClick={() => handlepopupDisplay("Drinks")} className="w-full bg-dark-bg p-4 rounded-2xl border border-border text-left">
             <p className="text-lg font-bold">Drinks</p>
-          </Link>
+          </button>
         </div>
       </div>
     </div>
