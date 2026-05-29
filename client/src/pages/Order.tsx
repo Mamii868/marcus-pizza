@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getSides, getSpecialties } from "../services/menuService";
+import { getDrinks, getSides, getSpecialties } from "../services/menuService";
 import Card from "../components/PizzaCard";
 import type { Specialty } from "../types/pizzaTypes";
 import PizzaPopup from "../components/PizzaPopup";
@@ -9,15 +9,19 @@ import CartPopup from "../components/CartPopup";
 import { useCartContext } from "../providers/CartProvider";
 import SidePopup from "../components/SidePopup";
 import type { MenuItem } from "../types/orderTypes";
+import DrinkPopup from "../components/DrinkPopup";
 
 const Order = () => {
   const { isCartOpen } = useCartContext();
   const [specialties, setSpecialties] = useState<Specialty[]>();
   const [sides, setSides] = useState<MenuItem[]>();
+  const [drinks, setDrinks] = useState<MenuItem[]>();
+
   const [selectedCategory, setSelectedCategory] = useState<string>();
   const [popupVisible, setPopupVisible] = useState(false);
 
-  // Fetch specialties to display within cards
+  // Fetch all the sides, specialties, and drinks
+  // I wished I used react query
   useEffect(() => {
     getOrder();
 
@@ -29,8 +33,14 @@ const Order = () => {
       const data = await getSides();
       setSides(data);
     };
+    const fetchDrinks = async () => {
+      const data = await getDrinks();
+      setDrinks(data);
+    };
+
     fetchSides();
     fetchSpecialties();
+    fetchDrinks();
   }, []);
 
   //   Set specific popup to display based on button selected
@@ -75,6 +85,7 @@ const Order = () => {
         </div>
         {popupVisible && selectedCategory === "Pizzas" && specialties && <PizzaPopup specialties={specialties} setPopupVisible={setPopupVisible} />}
         {popupVisible && selectedCategory === "Sides" && sides && <SidePopup sides={sides} setPopupVisible={setPopupVisible} />}
+        {popupVisible && selectedCategory === "Drinks" && drinks && <DrinkPopup drinks={drinks} setPopupVisible={setPopupVisible} />}{" "}
       </div>
     </>
   );
