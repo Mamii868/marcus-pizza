@@ -37,7 +37,11 @@ export const addItem = async (item: MenuItem) => {
   });
 
   if (!response.ok) {
-    throw new Error("Failed to add item to order");
+    if (response.status === 400) {
+      throw new Error("Missing item information");
+    } else {
+      throw new Error("Server Error: Please Try Again Later");
+    }
   }
 
   const data = await response.json();
@@ -55,10 +59,13 @@ export const addPizza = async (pizza: Pizza) => {
   });
 
   if (!response.ok) {
-    throw new Error("Failed to add pizza to order");
+    if (response.status === 400) {
+      throw new Error("Missing pizza information");
+    } else {
+      throw new Error("Server Error: Please Try Again Later");
+    }
   }
 
   const data = await response.json();
-  console.log("Add pizza response:", data);
   return data;
 };
