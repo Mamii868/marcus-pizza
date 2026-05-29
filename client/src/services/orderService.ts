@@ -33,7 +33,10 @@ export const addItem = async (item: MenuItem) => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(item),
+    body: JSON.stringify({
+      name: item.name.toUpperCase().replace(" ", "_"),
+      price: item.price
+    }),
   });
 
   if (!response.ok) {

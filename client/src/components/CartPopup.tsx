@@ -37,7 +37,13 @@ const CartPopup = () => {
             } else {
               return (
                 <p key={index} className="text-lg font-bold">
-                  {item.name} - ${item.price?.toFixed(2)}
+                    {/* This fixes the names from the enums within the server */}
+                  {item.name
+                    .toLowerCase()
+                    .split("_")
+                    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                    .join(" ")}{" "}
+                  - ${item.price?.toFixed(2)}
                 </p>
               );
             }
