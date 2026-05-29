@@ -11,6 +11,8 @@ interface CartProviderProps {
   updateCart: () => void;
   addItemToCart: (item: MenuItem) => Promise<void>;
   addPizzaToCart: (pizza: Pizza) => Promise<void>;
+  cartError: string | null;
+  setCartError: (error: string | null) => void;
 }
 
 const CartContext = createContext<CartProviderProps | undefined>(undefined);
@@ -23,6 +25,7 @@ export const CartProvider: React.FC = () => {
     items: [],
   });
   const [cartAmount, setCartAmount] = useState<number>(0);
+  const [cartError, setCartError] = useState<string | null>(null);
 
   const updateCart = async () => {
     const cartData = await getOrder();
@@ -31,17 +34,35 @@ export const CartProvider: React.FC = () => {
   };
 
   const addItemToCart = async (item: MenuItem) => {
-    await addItem(item);
-    await updateCart();
+    try {
+      await addItem(item);
+      await updateCart();
+    } catch (e: unknown) {
+      // Why is typescript complicated
+      if (e instanceof Error) {
+        setCartError(e.message);
+      } else {
+        setCartError("An unknown error occurred");
+      }
+    }
   };
 
   const addPizzaToCart = async (pizza: Pizza) => {
-    await addPizza(pizza);
-    await updateCart();
+    try {
+      await addPizza(pizza);
+      await updateCart();
+    } catch (e: unknown) {
+      // Why is typescript complicated
+      if (e instanceof Error) {
+        setCartError(e.message);
+      } else {
+        setCartError("An unknown error occurred");
+      }
+    }
   };
 
   return (
-    <CartContext.Provider value={{ cart, cartAmount, setCart, updateCart, addItemToCart, addPizzaToCart }}>
+    <CartContext.Provider value={{ cart, cartAmount, setCart, updateCart, addItemToCart, addPizzaToCart, cartError, setCartError }}>
       <Outlet />
     </CartContext.Provider>
   );

@@ -5,7 +5,7 @@ import { getCrusts, getSizes, getToppings } from "../services/menuService";
 import NavBar from "../components/NavBar";
 
 const CustomPizza = () => {
-  const { addPizzaToCart } = useCartContext();
+  const { addPizzaToCart, cartError, setCartError } = useCartContext();
   const [pizza, setPizza] = useState<Pizza>({
     crust: "",
     size: "",
@@ -36,6 +36,7 @@ const CustomPizza = () => {
 
   const handleSubmit = (e: React.SubmitEvent) => {
     e.preventDefault();
+    setCartError(null);
     addPizzaToCart(pizza);
   };
 
@@ -117,6 +118,7 @@ const CustomPizza = () => {
               className="w-full bg-orange hover:bg-darkorange text-white font-bold text-lg py-4 rounded-xl transition duration-200 cursor-pointer mt-2">
               Add to Cart
             </button>
+            {cartError && <p className="text-red-500 text-sm mt-2">{cartError}</p>}
           </form>
         </div>
       </div>
