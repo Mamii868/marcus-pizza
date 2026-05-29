@@ -18,6 +18,7 @@ const Order = () => {
     fetchSpecialties();
   }, []);
 
+//   Set specific popup to display based on button selected
   const handlepopupDisplay = (category: string) => {
     setSelectedCategory(category);
     setPopupVisible(true);

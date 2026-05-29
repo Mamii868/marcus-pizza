@@ -1,8 +1,6 @@
 import type { Specialty } from "../types/pizzaTypes";
 import Button from "./Button";
 
-
-
 const Card = ({ name, toppings, price }: Specialty) => {
   return (
     <div className="card w-full flex flex-col items-center gap-2 text-center p-2 text-white bg-dark-lightbg rounded-2xl border border-border">
@@ -12,11 +10,13 @@ const Card = ({ name, toppings, price }: Specialty) => {
       <p>Regular Crust</p>
       <div className="toppingList flex flex-col items-center grow">
         {toppings.map((topping, index) => (
-          <p className="text-sm text-left w-full" key={index}>- {topping.name}</p>
+          <p className="text-sm text-left w-full" key={index}>
+            - {topping.name}
+          </p>
         ))}
       </div>
       <p className="text-lg font-bold">${price.toFixed(2)}</p>
-      <Button text="Add to Cart" />
+      <Button>Add to Cart</Button>
     </div>
   );
 };
