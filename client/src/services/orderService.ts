@@ -21,7 +21,7 @@ export const checkout = async () => {
     throw new Error("Failed to checkout order");
   }
 
-  const data = await response.json();
+  const data: { response: string } = await response.json();
   console.log("Checkout response:", data);
   return data;
 };
@@ -35,7 +35,7 @@ export const addItem = async (item: MenuItem) => {
     },
     body: JSON.stringify({
       name: item.name.toUpperCase().replace(" ", "_"),
-      price: item.price
+      price: item.price,
     }),
   });
 

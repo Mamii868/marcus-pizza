@@ -15,6 +15,8 @@ interface CartProviderProps {
   setCartError: (error: string | null) => void;
   isCartOpen: boolean;
   setIsCartOpen: (isOpen: boolean) => void;
+  isCheckoutOpen: boolean;
+  setIsCheckoutOpen: (isOpen: boolean) => void;
 }
 
 const CartContext = createContext<CartProviderProps | undefined>(undefined);
@@ -29,6 +31,7 @@ export const CartProvider: React.FC = () => {
   const [cartAmount, setCartAmount] = useState<number>(0);
   const [cartError, setCartError] = useState<string | null>(null);
   const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState<boolean>(false);
 
   const updateCart = async () => {
     const cartData = await getOrder();
@@ -67,7 +70,21 @@ export const CartProvider: React.FC = () => {
   };
 
   return (
-    <CartContext.Provider value={{ cart, cartAmount, setCart, updateCart, addItemToCart, addPizzaToCart, cartError, setCartError, isCartOpen, setIsCartOpen }}>
+    <CartContext.Provider
+      value={{
+        cart,
+        cartAmount,
+        setCart,
+        updateCart,
+        addItemToCart,
+        addPizzaToCart,
+        cartError,
+        setCartError,
+        isCartOpen,
+        setIsCartOpen,
+        isCheckoutOpen,
+        setIsCheckoutOpen,
+      }}>
       <Outlet />
     </CartContext.Provider>
   );

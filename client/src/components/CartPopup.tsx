@@ -3,7 +3,13 @@ import type { Pizza } from "../types/pizzaTypes";
 import Button from "./Button";
 
 const CartPopup = () => {
-  const { cart, cartAmount, cartError, setIsCartOpen } = useCartContext();
+  const { cart, cartAmount, cartError, setIsCartOpen, setIsCheckoutOpen } = useCartContext();
+
+  const handleCheckout = () => {
+    setIsCartOpen(false);
+    setIsCheckoutOpen(true);
+  };
+
   return (
     <div className="cart w-1/3 h-full absolute top-0 right-0 bg-dark-bg p-4 rounded-l-2xl border border-border text-white flex flex-col gap-4 pt-18">
       <button
@@ -53,7 +59,7 @@ const CartPopup = () => {
       </div>
       <div className="footer border-t-2 py-2 border-border flex items-center justify-between px-4">
         <p className="text-xl font-bold">Total: ${cart.items.reduce((total, item) => total + (item.price || 0), 0).toFixed(2)}</p>
-        <Button>Checkout</Button>
+        <Button onClick={handleCheckout}>Checkout</Button>
       </div>
     </div>
   );

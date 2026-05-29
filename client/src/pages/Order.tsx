@@ -10,9 +10,10 @@ import { useCartContext } from "../providers/CartProvider";
 import SidePopup from "../components/SidePopup";
 import type { MenuItem } from "../types/orderTypes";
 import DrinkPopup from "../components/DrinkPopup";
+import CheckoutPopup from "../components/CheckoutPopup";
 
 const Order = () => {
-  const { isCartOpen } = useCartContext();
+  const { isCartOpen, isCheckoutOpen } = useCartContext();
   const [specialties, setSpecialties] = useState<Specialty[]>();
   const [sides, setSides] = useState<MenuItem[]>();
   const [drinks, setDrinks] = useState<MenuItem[]>();
@@ -85,7 +86,8 @@ const Order = () => {
         </div>
         {popupVisible && selectedCategory === "Pizzas" && specialties && <PizzaPopup specialties={specialties} setPopupVisible={setPopupVisible} />}
         {popupVisible && selectedCategory === "Sides" && sides && <SidePopup sides={sides} setPopupVisible={setPopupVisible} />}
-        {popupVisible && selectedCategory === "Drinks" && drinks && <DrinkPopup drinks={drinks} setPopupVisible={setPopupVisible} />}{" "}
+        {popupVisible && selectedCategory === "Drinks" && drinks && <DrinkPopup drinks={drinks} setPopupVisible={setPopupVisible} />}
+        {isCheckoutOpen && <CheckoutPopup />}
       </div>
     </>
   );
