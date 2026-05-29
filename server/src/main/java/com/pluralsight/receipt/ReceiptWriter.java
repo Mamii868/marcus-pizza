@@ -55,10 +55,10 @@ public class ReceiptWriter {
             });
 
             bufferedWriter.write("========\n");
-            bufferedWriter.write("Total: $" + order.getOrderTotal() + "\n");
+            bufferedWriter.write("Total: $" + String.format("%.2f", order.getOrderTotal()) + "\n");
             bufferedWriter.write("========");
             receiptToReturn.append("========\n");
-            receiptToReturn.append("Total: $" + order.getOrderTotal() + "\n");
+            receiptToReturn.append("Total: $" + String.format("%.2f", order.getOrderTotal()) + "\n");
             receiptToReturn.append("========");
 
 
