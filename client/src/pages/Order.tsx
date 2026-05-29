@@ -6,8 +6,10 @@ import PizzaPopup from "../components/PizzaPopup";
 import { getOrder } from "../services/orderService";
 import NavBar from "../components/NavBar";
 import CartPopup from "../components/CartPopup";
+import { useCartContext } from "../providers/CartProvider";
 
 const Order = () => {
+  const { isCartOpen } = useCartContext();
   const [specialties, setSpecialties] = useState<Specialty[]>();
   const [selectedCategory, setSelectedCategory] = useState<string>();
   const [popupVisible, setPopupVisible] = useState(false);
@@ -32,7 +34,7 @@ const Order = () => {
   return (
     <>
       <NavBar />
-      <CartPopup />
+      {isCartOpen && <CartPopup />}
       <div className="w-full text-white my-10">
         <div className="featured">
           <h2 className="text-2xl font-bold mb-4 text-center">Featured</h2>
