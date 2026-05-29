@@ -14,7 +14,7 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="navbar sticky w-full p-2 h-12 bg-dark-lightbg text-white flex items-center justify-between z-50">
+    <nav className="navbar sticky w-full p-2 h-12 bg-dark-lightbg border-b-2 border-border text-white flex items-center justify-between z-50">
       <Link to="/" className="font-bold text-xl">
         <span className="text-orange">Marcus</span> Pizza
       </Link>
