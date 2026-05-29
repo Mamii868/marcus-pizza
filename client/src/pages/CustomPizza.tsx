@@ -59,7 +59,7 @@ const CustomPizza = () => {
         <div className="bg-dark-lightbg rounded-2xl border border-border p-6 flex flex-col gap-6">
           <form onSubmit={handleSubmit} className="flex flex-col gap-6">
             <div className="flex flex-col gap-2">
-              <label className="text-xl font-bold text-orange">Crust</label>
+              <p className="text-xl font-bold text-orange">Crust</p>
               <div className="relative">
                 <select
                   value={pizza.crust}
@@ -74,12 +74,12 @@ const CustomPizza = () => {
                     </option>
                   ))}
                 </select>
-                <div className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-orange text-sm">▼</div>
+                <div className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-orange text-sm">V</div>
               </div>
             </div>
 
             <div className="flex flex-col gap-2">
-              <label className="text-xl font-bold text-orange">Size</label>
+              <p className="text-xl font-bold text-orange">Size</p>
               <div className="grid grid-cols-3 gap-2">
                 {sizeOptions.map((size) => (
                   <button
@@ -95,14 +95,14 @@ const CustomPizza = () => {
             </div>
 
             <div className="flex flex-col gap-2">
-              <label className="text-xl font-bold text-orange">Toppings</label>
+              <p className="text-xl font-bold text-orange">Toppings</p>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                 {toppingOptions.map((topping) => (
                   <button
                     key={topping.name}
                     type="button"
                     onClick={() => handleToppingToggle(topping.name)}
-                    className={`border border-orange p-4 rounded-xl text-base font-bold transition duration-200 cursor-pointer hover:bg-darkorange flex flex-col items-center gap-1 ${pizza.toppings.includes(topping.name) ? "bg-orange" : "bg-dark-bg"}`}>
+                    className={`border border-orange p-4 rounded-xl text-base font-bold transition duration-200 cursor-pointer  flex flex-col items-center gap-1 ${pizza.toppings.includes(topping.name) ? "bg-orange" : "hover:bg-darkorange bg-dark-bg"}`}>
                     <span>{topping.name}</span>
                     <span className="text-sm font-normal">+${topping.price?.toFixed(2)}</span>
                   </button>
