@@ -5,6 +5,7 @@ import type { Specialty } from "../types/pizzaTypes";
 import PizzaPopup from "../components/PizzaPopup";
 import { getOrder } from "../services/orderService";
 import NavBar from "../components/NavBar";
+import CartPopup from "../components/CartPopup";
 
 const Order = () => {
   const [specialties, setSpecialties] = useState<Specialty[]>();
@@ -31,6 +32,7 @@ const Order = () => {
   return (
     <>
       <NavBar />
+      <CartPopup />
       <div className="w-full text-white my-10">
         <div className="featured">
           <h2 className="text-2xl font-bold mb-4 text-center">Featured</h2>
