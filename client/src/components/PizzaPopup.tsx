@@ -4,8 +4,8 @@ import Card from "./Card";
 
 const PizzaPopup = ({ specialties, setPopupVisible }: { specialties: Specialty[]; setPopupVisible: (visible: boolean) => void }) => {
   return (
-    <div className="popup fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex flex-col items-center">
-      <div className="cardContainer w-11/12 md:w-1/2 bg-dark-bg p-4 rounded-2xl border border-border text-white overflow-y-scroll flex flex-col gap-4">
+    <div className="popup fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex flex-col items-center z-90">
+      <div className="cardContainer w-11/12 md:w-1/2 bg-dark-bg p-4 rounded-2xl border border-border text-white overflow-y-scroll flex flex-col gap-4 m-4">
         <div className="exitButton w-full flex justify-end p-4">
           <button
             onClick={() => setPopupVisible(false)}
