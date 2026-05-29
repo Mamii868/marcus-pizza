@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { type Crust, type Pizza, type Size, type Topping } from "../types/pizzaTypes";
 import { useCartContext } from "../providers/CartProvider";
 import { getCrusts, getSizes, getToppings } from "../services/menuService";
+import NavBar from "../components/NavBar";
 
 const CustomPizza = () => {
   const { addPizzaToCart } = useCartContext();
@@ -33,7 +34,8 @@ const CustomPizza = () => {
     fetchToppingOptions();
   }, []);
 
-  const handleSubmit = () => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     addPizzaToCart(pizza);
   };
 
@@ -50,49 +52,73 @@ const CustomPizza = () => {
   }
 
   return (
-    <div className="customPizza w-full text-white my-10">
-      <h1 className="text-4xl font-bold mb-4">Create Your Custom Pizza</h1>
-      <div className="formContainer">
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          <label className="text-2xl text-center">Crust</label>
-          <div className="flex gap-2 items-center justify-center">
-            {crustOptions.map((crust) => (
-              <button
-                key={crust.name}
-                type="button"
-                onClick={() => setPizza((prev) => ({ ...prev, crust: crust.name.toUpperCase().replace(" ", "_") }))}
-                className={`border border-orange p-4 rounded-2xl text-lg font-bold  transition duration-200 cursor-pointer ${pizza.crust === crust.name.toUpperCase().replace(" ", "_") ? "bg-orange" : ""}`}>
-                {crust.name}
-              </button>
-            ))}
-          </div>
-          <label className="text-2xl text-center">Size</label>
-          <div className="flex gap-2 items-center justify-center">
-            {sizeOptions.map((size) => (
-              <button
-                key={size.name}
-                type="button"
-                onClick={() => setPizza((prev) => ({ ...prev, size: size.name.toUpperCase().replace(" ", "_") }))}
-                className={`border border-orange p-4 rounded-2xl text-lg font-bold  hover:bg-darkorange transition duration-200 cursor-pointer ${pizza.size === size.name.toUpperCase().replace(" ", "_") ? "bg-orange" : ""}`}>
-                {size.name} +${size.price?.toFixed(2)}
-              </button>
-            ))}
-          </div>
-          <label className="text-2xl text-center">Toppings</label>
-          <div className="flex flex-wrap items-center justify-center gap-2">
-            {toppingOptions.map((topping) => (
-              <button
-                key={topping.name}
-                type="button"
-                onClick={() => handleToppingToggle(topping.name)}
-                className={`border border-orange p-4 rounded-2xl text-lg font-bold  hover:bg-darkorange transition duration-200 cursor-pointer ${pizza.toppings.includes(topping.name) ? "bg-orange" : ""}`}>
-                {topping.name} +${topping.price?.toFixed(2)}
-              </button>
-            ))}
-          </div>
-        </form>
+    <>
+      <NavBar />
+      <div className="customPizza w-full text-white my-10 px-4 max-w-2xl mx-auto">
+        <h1 className="text-4xl font-bold mb-8 text-center">Create Your Custom Pizza</h1>
+        <div className="bg-dark-lightbg rounded-2xl border border-border p-6 flex flex-col gap-6">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+            <div className="flex flex-col gap-2">
+              <label className="text-xl font-bold text-orange">Crust</label>
+              <div className="relative">
+                <select
+                  value={pizza.crust}
+                  onChange={(e) => setPizza((prev) => ({ ...prev, crust: e.target.value }))}
+                  className="w-full appearance-none bg-dark-bg border border-border text-white rounded-xl px-4 py-3 text-lg cursor-pointer focus:outline-none focus:border-orange transition duration-200">
+                  <option value="" disabled>
+                    Select a crust...
+                  </option>
+                  {crustOptions.map((crust) => (
+                    <option key={crust.name} value={crust.name.toUpperCase().replace(" ", "_")}>
+                      {crust.name}
+                    </option>
+                  ))}
+                </select>
+                <div className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-orange text-sm">▼</div>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <label className="text-xl font-bold text-orange">Size</label>
+              <div className="grid grid-cols-3 gap-2">
+                {sizeOptions.map((size) => (
+                  <button
+                    key={size.name}
+                    type="button"
+                    onClick={() => setPizza((prev) => ({ ...prev, size: size.name.toUpperCase().replace(" ", "_") }))}
+                    className={`border border-orange p-4 rounded-xl text-base font-bold transition duration-200 cursor-pointer hover:bg-darkorange flex flex-col items-center gap-1 ${pizza.size === size.name.toUpperCase().replace(" ", "_") ? "bg-orange" : "bg-dark-bg"}`}>
+                    <span>{size.name}</span>
+                    <span className="text-sm font-normal">+${size.price?.toFixed(2)}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <label className="text-xl font-bold text-orange">Toppings</label>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                {toppingOptions.map((topping) => (
+                  <button
+                    key={topping.name}
+                    type="button"
+                    onClick={() => handleToppingToggle(topping.name)}
+                    className={`border border-orange p-4 rounded-xl text-base font-bold transition duration-200 cursor-pointer hover:bg-darkorange flex flex-col items-center gap-1 ${pizza.toppings.includes(topping.name) ? "bg-orange" : "bg-dark-bg"}`}>
+                    <span>{topping.name}</span>
+                    <span className="text-sm font-normal">+${topping.price?.toFixed(2)}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              className="w-full bg-orange hover:bg-darkorange text-white font-bold text-lg py-4 rounded-xl transition duration-200 cursor-pointer mt-2">
+              Add to Cart
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
