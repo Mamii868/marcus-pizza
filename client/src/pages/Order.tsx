@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getSpecialties } from "../services/menuService";
 import Card from "../components/Card";
 import type { Specialty } from "../types/pizzaTypes";
-import { Link } from "react-router";
+import PizzaPopup from "../components/PizzaPopup";
 
 const Order = () => {
   const [specialties, setSpecialties] = useState<Specialty[]>();
@@ -21,7 +21,7 @@ const Order = () => {
   const handlepopupDisplay = (category: string) => {
     setSelectedCategory(category);
     setPopupVisible(true);
-  }
+  };
 
   return (
     <div className="w-full text-white my-10">
@@ -50,6 +50,7 @@ const Order = () => {
           </button>
         </div>
       </div>
+      {popupVisible && selectedCategory === "Pizzas" && specialties && <PizzaPopup specialties={specialties} setPopupVisible={setPopupVisible} />}
     </div>
   );
 };

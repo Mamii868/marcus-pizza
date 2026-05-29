@@ -10,7 +10,7 @@ interface CardProps {
 
 const Card = ({ title, toppings, crust, price }: CardProps) => {
   return (
-    <div className="card w-full flex flex-col items-center gap-2 text-center p-2 text-white bg-dark-bg rounded-2xl border border-border">
+    <div className="card w-full flex flex-col items-center gap-2 text-center p-2 text-white bg-dark-lightbg rounded-2xl border border-border">
       <div className="title">
         <h2 className="text-xl font-bold border-b-2 border-orange">{title}</h2>
       </div>
