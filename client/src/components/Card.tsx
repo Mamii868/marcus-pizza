@@ -6,9 +6,9 @@ const Card = ({ name, toppings, price }: Specialty) => {
   const { addPizzaToCart } = useCartContext();
   const handleAddToCart = () => {
     const pizza: Pizza = {
-      crust: "REGULAR",
-      size: "MEDIUM",
-      toppings: toppings.map((topping) => topping.name.toUpperCase()),
+      crust: { name: "REGULAR" },
+      size: { name: "MEDIUM" },
+      toppings: toppings.map((topping) => ({ name: topping.name.toUpperCase() })),
     };
 
     addPizzaToCart(pizza);

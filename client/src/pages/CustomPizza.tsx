@@ -8,8 +8,8 @@ import { useNavigate } from "react-router";
 const CustomPizza = () => {
   const { addPizzaToCart, cartError, setCartError } = useCartContext();
   const [pizza, setPizza] = useState<Pizza>({
-    crust: "",
-    size: "",
+    crust: { name: "" },
+    size: { name: "" },
     toppings: [],
   });
   const [crustOptions, setCrustOptions] = useState<Crust[]>();
@@ -55,9 +55,14 @@ const CustomPizza = () => {
   const handleToppingToggle = (toppingName: string) => {
     // Check if the topping was selected already so it can be deselected
     setPizza((prev) => {
-      const isToppingSelected = prev.toppings.includes(toppingName);
-      const newToppings = isToppingSelected ? prev.toppings.filter((topping) => topping !== toppingName) : [...prev.toppings, toppingName];
-      const formattedToppings = newToppings.map((topping) => topping.toUpperCase().replace(" ", "_").replace("-", "_"));
+      // Ew some
+      const isToppingSelected = prev.toppings.some((topping) => topping.name === toppingName);
+      const newToppings = isToppingSelected
+        ? prev.toppings.filter((topping) => topping.name !== toppingName)
+        : [...prev.toppings, { name: toppingName }];
+      const formattedToppings = newToppings.map((topping) => ({
+        name: topping.name.toUpperCase().replace(" ", "_").replace("-", "_"),
+      }));
       return { ...prev, toppings: formattedToppings };
     });
   };
@@ -77,8 +82,8 @@ const CustomPizza = () => {
               <p className="text-xl font-bold text-orange">Crust</p>
               <div className="relative">
                 <select
-                  value={pizza.crust}
-                  onChange={(e) => setPizza((prev) => ({ ...prev, crust: e.target.value }))}
+                  value={pizza.crust.name}
+                  onChange={(e) => setPizza((prev) => ({ ...prev, crust: { name: e.target.value } }))}
                   className="w-full appearance-none bg-dark-bg border border-border text-white rounded-xl px-4 py-3 text-lg cursor-pointer focus:outline-none focus:border-orange transition duration-200">
                   <option value="" disabled>
                     Select a crust...
@@ -100,8 +105,8 @@ const CustomPizza = () => {
                   <button
                     key={size.name}
                     type="button"
-                    onClick={() => setPizza((prev) => ({ ...prev, size: size.name.toUpperCase().split(" ")[0] }))}
-                    className={`border border-orange p-4 rounded-xl text-base font-bold transition duration-200 cursor-pointer hover:bg-darkorange flex flex-col items-center gap-1 ${pizza.size === size.name.toUpperCase().split(" ")[0] ? "bg-orange" : "bg-dark-bg"}`}>
+                    onClick={() => setPizza((prev) => ({ ...prev, size: { name: size.name.toUpperCase().split(" ")[0] } }))}
+                    className={`border border-orange p-4 rounded-xl text-base font-bold transition duration-200 cursor-pointer hover:bg-darkorange flex flex-col items-center gap-1 ${pizza.size.name === size.name.toUpperCase().split(" ")[0] ? "bg-orange" : "bg-dark-bg"}`}>
                     <span>{size.name}</span>
                     <span className="text-sm font-normal">+${size.price?.toFixed(2)}</span>
                   </button>
@@ -117,7 +122,8 @@ const CustomPizza = () => {
                     key={topping.name}
                     type="button"
                     onClick={() => handleToppingToggle(topping.name)}
-                    className={`border border-orange p-4 rounded-xl text-base font-bold transition duration-200 cursor-pointer  flex flex-col items-center gap-1 ${pizza.toppings.includes(topping.name.toUpperCase().replace(" ", "_").replace("-", "_")) ? "bg-orange" : "hover:bg-darkorange bg-dark-bg"}`}>
+                    // I don't like some... but here we are
+                    className={`border border-orange p-4 rounded-xl text-base font-bold transition duration-200 cursor-pointer  flex flex-col items-center gap-1 ${pizza.toppings.some((topping) => topping.name === topping.name.toUpperCase().replace(" ", "_").replace("-", "_")) ? "bg-orange" : "hover:bg-darkorange bg-dark-bg"}`}>
                     <span>{topping.name}</span>
                     <span className="text-sm font-normal">+${topping.price?.toFixed(2)}</span>
                   </button>

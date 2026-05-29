@@ -14,9 +14,9 @@ type Topping = {
 
 // This has to be strings in order for the server to get the values for its enums
 type Pizza = {
-  crust: string;
-  size: string;
-  toppings: string[];
+  crust: Crust;
+  size: Size;
+  toppings: Topping[];
 };
 
 type Specialty = {

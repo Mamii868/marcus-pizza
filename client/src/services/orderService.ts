@@ -55,7 +55,12 @@ export const addPizza = async (pizza: Pizza) => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(pizza),
+    // This is to get around the whole type thing rather than passing in pizza itself. the server only wants the names
+    body: JSON.stringify({
+      crust: pizza.crust.name.toUpperCase(),
+      size: pizza.size.name.toUpperCase(),
+      toppings: pizza.toppings.map((topping) => topping.name.toUpperCase()),
+    }),
   });
 
   if (!response.ok) {
