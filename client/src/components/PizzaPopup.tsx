@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import type { Specialty } from "../types/pizzaTypes";
-import Card from "./Card";
+import Card from "./PizzaCard";
 
 const PizzaPopup = ({ specialties, setPopupVisible }: { specialties: Specialty[]; setPopupVisible: (visible: boolean) => void }) => {
   return (

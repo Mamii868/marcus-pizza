@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getSpecialties } from "../services/menuService";
-import Card from "../components/Card";
+import Card from "../components/PizzaCard";
 import type { Specialty } from "../types/pizzaTypes";
 import PizzaPopup from "../components/PizzaPopup";
 import { getOrder } from "../services/orderService";

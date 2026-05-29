@@ -2,7 +2,7 @@ import { useCartContext } from "../providers/CartProvider";
 import type { Pizza, Specialty } from "../types/pizzaTypes";
 import Button from "./Button";
 
-const Card = ({ name, toppings, price }: Specialty) => {
+const PizzaCard = ({ name, toppings, price }: Specialty) => {
   const { addPizzaToCart } = useCartContext();
   const handleAddToCart = () => {
     const pizza: Pizza = {
@@ -32,4 +32,4 @@ const Card = ({ name, toppings, price }: Specialty) => {
   );
 };
 
-export default Card;
+export default PizzaCard;
