@@ -6,6 +6,7 @@ import { Outlet } from "react-router";
 
 interface CartProviderProps {
   cart: Order;
+  cartAmount: number;
   setCart: (cart: Order) => void;
   updateCart: () => void;
   addItemToCart: (item: MenuItem) => Promise<void>;
@@ -21,10 +22,12 @@ export const CartProvider: React.FC = () => {
     address: "",
     items: [],
   });
+  const [cartAmount, setCartAmount] = useState<number>(0);
 
   const updateCart = async () => {
     const cartData = await getOrder();
     setCart(cartData);
+    setCartAmount(cartData.items.length);
   };
 
   const addItemToCart = async (item: MenuItem) => {
@@ -38,7 +41,7 @@ export const CartProvider: React.FC = () => {
   };
 
   return (
-    <CartContext.Provider value={{ cart, setCart, updateCart, addItemToCart, addPizzaToCart }}>
+    <CartContext.Provider value={{ cart, cartAmount, setCart, updateCart, addItemToCart, addPizzaToCart }}>
       <Outlet />
     </CartContext.Provider>
   );
