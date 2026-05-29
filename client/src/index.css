@@ -16,6 +16,8 @@
         --color-light-text: hsl(0, 2%, 5%);
         --color-light-subtext: hsl(0, 2%, 30%);
 
+        --color-border: hsl(0, 2%, 20%);
+
         /* Animations */
         --animate-fade-up: fadeUp 0.5s ease-out forwards;
         --animate-fade-in: fade-in 0.5s ease-out forwards;
