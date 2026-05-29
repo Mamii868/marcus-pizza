@@ -11,6 +11,8 @@ ReactDOM.createRoot(root).render(
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/order" element={<Order />} />
+      <Route path="/order/custom" element={<Order />} />
+      <Route path="*" element={<Home />} />
     </Routes>
   </BrowserRouter>,
 );
