@@ -1,5 +1,41 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+@theme {
+        --color-orange: hsl(35, 100%, 50%);
+        --color-darkorange: hsl(35, 100%, 30%);
+        /* Dark Mode */
+        --color-dark-darkbg: hsl(0, 2%, 0%);
+        --color-dark-bg: hsl(0, 2%, 5%);
+        --color-dark-lightbg: hsl(0, 2%, 10%);
+        --color-dark-text: hsl(0, 2%, 95%);
+        --color-dark-subtext: hsl(0, 2%, 70%);
+        /* Light Mode */
+        --color-light-lightbg: hsl(0, 2%, 95%);
+        --color-light-bg: hsl(0, 2%, 90%);
+        --color-light-darkbg: hsl(0, 2%, 85%);
+        --color-light-text: hsl(0, 2%, 5%);
+        --color-light-subtext: hsl(0, 2%, 30%);
+
+        /* Animations */
+        --animate-fade-up: fadeUp 0.5s ease-out forwards;
+        --animate-fade-in: fade-in 0.5s ease-out forwards;
+        
+        @keyframes fadeUp {
+          from { opacity: 0; transform: translateY(10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fade-in {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+}
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
 
 body {
-    background-color: hsl(0, 0%, 10%);
+    background-color: var(--color-dark-darkbg);
 }
