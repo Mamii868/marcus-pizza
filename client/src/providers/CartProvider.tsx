@@ -41,6 +41,7 @@ export const CartProvider: React.FC = () => {
       // Why is typescript complicated
       if (e instanceof Error) {
         setCartError(e.message);
+        throw e;
       } else {
         setCartError("An unknown error occurred");
       }
@@ -55,6 +56,7 @@ export const CartProvider: React.FC = () => {
       // Why is typescript complicated
       if (e instanceof Error) {
         setCartError(e.message);
+        throw e;
       } else {
         setCartError("An unknown error occurred");
       }

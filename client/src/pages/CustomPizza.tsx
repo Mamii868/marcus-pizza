@@ -3,6 +3,7 @@ import { type Crust, type Pizza, type Size, type Topping } from "../types/pizzaT
 import { useCartContext } from "../providers/CartProvider";
 import { getCrusts, getSizes, getToppings } from "../services/menuService";
 import NavBar from "../components/NavBar";
+import { useNavigate } from "react-router";
 
 const CustomPizza = () => {
   const { addPizzaToCart, cartError, setCartError } = useCartContext();
@@ -14,6 +15,7 @@ const CustomPizza = () => {
   const [crustOptions, setCrustOptions] = useState<Crust[]>();
   const [sizeOptions, setSizeOptions] = useState<Size[]>([]);
   const [toppingOptions, setToppingOptions] = useState<Topping[]>([]);
+  const navigate = useNavigate();
 
   //   Get literally every pizza option ever
   useEffect(() => {
@@ -34,10 +36,15 @@ const CustomPizza = () => {
     fetchToppingOptions();
   }, []);
 
-  const handleSubmit = (e: React.SubmitEvent) => {
-    e.preventDefault();
-    setCartError(null);
-    addPizzaToCart(pizza);
+  const handleSubmit = async (e: React.SubmitEvent) => {
+    try {
+      e.preventDefault();
+      setCartError(null);
+      await addPizzaToCart(pizza);
+      navigate("/order");
+    } catch (e: unknown) {
+      console.log("Error adding pizza to cart:", e);
+    }
   };
 
   const handleToppingToggle = (toppingName: string) => {
